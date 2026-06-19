@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import logoSrc from "@assets/image_1781878266467.png";
 import heroBgSrc from "@assets/068b1229-4d7a-4ad2-bb05-65ca7d624ff3_1781881405097.png";
 
 const GOLD = "#c9a84c";
@@ -119,7 +118,7 @@ export default function App() {
           }}
         />
 
-        {/* ── Logo + wordmark ── */}
+        {/* ── Logo ── */}
         <motion.div
           className="la-hero-logo-area"
           {...fadeUp}
@@ -127,56 +126,18 @@ export default function App() {
           style={{
             position: "relative",
             padding: "2.25rem 3rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.875rem",
           }}
         >
-          {/* Circular gold-bordered medallion containing the logo */}
-          <div
+          <img
+            src="/logo-transparent.png"
+            alt="Lex Aureum"
             style={{
-              width: 72,
-              height: 72,
-              borderRadius: "50%",
-              border: `1.5px solid rgba(201,168,76,0.50)`,
-              overflow: "hidden",
-              background: "#fff",
-              boxShadow:
-                "0 2px 20px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(201,168,76,0.18)",
-              flexShrink: 0,
+              height: 88,
+              width: "auto",
+              display: "block",
+              filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.5))",
             }}
-          >
-            <img
-              src={logoSrc}
-              alt="Lex Aureum emblem"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-            />
-          </div>
-
-          {/* Wordmark stacked beside medallion */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {["LEX", "AUREUM"].map((word) => (
-              <span
-                key={word}
-                style={{
-                  fontFamily: SERIF,
-                  color: GOLD,
-                  letterSpacing: "0.34em",
-                  fontSize: "0.65rem",
-                  fontWeight: 400,
-                  lineHeight: 1.2,
-                  textTransform: "uppercase",
-                }}
-              >
-                {word}
-              </span>
-            ))}
-          </div>
+          />
         </motion.div>
 
         {/* ── Headline + subtext — positioned on left where overlay is solid dark ── */}
