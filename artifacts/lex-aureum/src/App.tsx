@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import logoSrc from "@assets/image_1781878266467.png";
+import heroBgSrc from "@assets/2e6e7acb-da4f-4b6b-9041-8f1074aa2b9e_1781878287908.png";
 
 const GOLD = "#c9a84c";
 const HERO_BG = "#1a1a18";
@@ -43,10 +44,69 @@ export default function App() {
           flexDirection: "column",
           justifyContent: "space-between",
           overflow: "hidden",
-          background: `linear-gradient(145deg, #141412 0%, #1a1a18 30%, #1d1b0d 65%, #1a1a18 100%)`,
+          /* Dark fallback in case image is slow */
+          background: HERO_BG,
+          /* Flatlay photo as background — backgroundPosition: top so the
+             dark desk area shows, and the cream lower section of the
+             screenshot is cut off below the section boundary */
+          backgroundImage: `url(${heroBgSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Warm radial glow — top right */}
+        {/*
+          Left-side masking overlay — completely covers the baked-in logo,
+          headline, and subtext from the reference screenshot so only the
+          dark desk / creative props area on the right shows through.
+          Gradient: solid HERO_BG for left ~50%, then fades out rightward.
+        */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: `linear-gradient(
+              to right,
+              ${HERO_BG} 0%,
+              ${HERO_BG} 44%,
+              rgba(26,26,24,0.92) 56%,
+              rgba(26,26,24,0.55) 70%,
+              rgba(26,26,24,0.20) 85%,
+              rgba(26,26,24,0.08) 100%
+            )`,
+          }}
+        />
+        {/* Top-edge darkening — softens any logo in top-left of screenshot */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: `linear-gradient(
+              to bottom,
+              rgba(26,26,24,0.72) 0%,
+              rgba(26,26,24,0.25) 30%,
+              transparent 55%
+            )`,
+          }}
+        />
+        {/* Bottom-edge fade — hides any cream section bleed from the screenshot */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "28%",
+            pointerEvents: "none",
+            background: `linear-gradient(to top, ${HERO_BG} 0%, transparent 100%)`,
+          }}
+        />
+        {/* Warm gold radial glow at top-right */}
         <div
           aria-hidden="true"
           style={{
@@ -54,43 +114,9 @@ export default function App() {
             inset: 0,
             pointerEvents: "none",
             background:
-              "radial-gradient(ellipse at 78% 18%, rgba(201,168,76,0.09) 0%, rgba(201,168,76,0.03) 38%, transparent 62%)",
+              "radial-gradient(ellipse at 78% 18%, rgba(201,168,76,0.07) 0%, rgba(201,168,76,0.02) 38%, transparent 60%)",
           }}
         />
-        {/* Secondary glow — bottom left */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            pointerEvents: "none",
-            background:
-              "radial-gradient(ellipse at 15% 90%, rgba(201,168,76,0.04) 0%, transparent 40%)",
-          }}
-        />
-        {/* Subtle grain texture via inline SVG */}
-        <svg
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            opacity: 0.035,
-            pointerEvents: "none",
-          }}
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <filter id="la-noise">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.72"
-              numOctaves="4"
-              stitchTiles="stitch"
-            />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#la-noise)" />
-        </svg>
 
         {/* ── Logo + wordmark ── */}
         <motion.div
@@ -105,7 +131,7 @@ export default function App() {
             gap: "0.875rem",
           }}
         >
-          {/* Medallion: circular border contains the logo */}
+          {/* Circular gold-bordered medallion containing the logo */}
           <div
             style={{
               width: 72,
@@ -114,55 +140,45 @@ export default function App() {
               border: `1.5px solid rgba(201,168,76,0.50)`,
               overflow: "hidden",
               background: "#fff",
-              boxShadow: "0 2px 20px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(201,168,76,0.18)",
+              boxShadow:
+                "0 2px 20px rgba(0,0,0,0.40), 0 0 0 0.5px rgba(201,168,76,0.18)",
               flexShrink: 0,
             }}
           >
             <img
               src={logoSrc}
               alt="Lex Aureum emblem"
-              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
             />
           </div>
 
           {/* Wordmark stacked beside medallion */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-            }}
-          >
-            <span
-              style={{
-                fontFamily: SERIF,
-                color: GOLD,
-                letterSpacing: "0.34em",
-                fontSize: "0.65rem",
-                fontWeight: 400,
-                lineHeight: 1.2,
-                textTransform: "uppercase",
-              }}
-            >
-              LEX
-            </span>
-            <span
-              style={{
-                fontFamily: SERIF,
-                color: GOLD,
-                letterSpacing: "0.34em",
-                fontSize: "0.65rem",
-                fontWeight: 400,
-                lineHeight: 1.2,
-                textTransform: "uppercase",
-              }}
-            >
-              AUREUM
-            </span>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            {["LEX", "AUREUM"].map((word) => (
+              <span
+                key={word}
+                style={{
+                  fontFamily: SERIF,
+                  color: GOLD,
+                  letterSpacing: "0.34em",
+                  fontSize: "0.65rem",
+                  fontWeight: 400,
+                  lineHeight: 1.2,
+                  textTransform: "uppercase",
+                }}
+              >
+                {word}
+              </span>
+            ))}
           </div>
         </motion.div>
 
-        {/* ── Headline + subtext ── */}
+        {/* ── Headline + subtext — positioned on left where overlay is solid dark ── */}
         <motion.div
           className="la-hero-inner"
           {...fadeUp}
@@ -170,7 +186,7 @@ export default function App() {
           style={{
             position: "relative",
             padding: "0 3rem 3.5rem",
-            maxWidth: 660,
+            maxWidth: 600,
           }}
         >
           {/* Thin gold rule */}
@@ -196,7 +212,6 @@ export default function App() {
             }}
           >
             Your work deserves more than exposure.{" "}
-            <br />
             It deserves protection.
           </h1>
 
@@ -208,7 +223,7 @@ export default function App() {
               fontSize: "0.93rem",
               fontWeight: 300,
               lineHeight: 1.8,
-              maxWidth: 420,
+              maxWidth: 400,
               margin: 0,
             }}
           >
@@ -242,7 +257,7 @@ export default function App() {
         >
           {/* ── Left: categories + Coming Soon ── */}
           <div>
-            {/* Category line */}
+            {/* Category line — plain text with gold bullet separators */}
             <div
               data-testid="categories"
               style={{
@@ -254,7 +269,6 @@ export default function App() {
                 display: "flex",
                 flexWrap: "wrap",
                 alignItems: "center",
-                gap: "0",
                 marginBottom: "1.85rem",
               }}
             >
@@ -268,7 +282,7 @@ export default function App() {
                       aria-hidden="true"
                       style={{
                         color: GOLD,
-                        margin: "0 0.55rem",
+                        margin: "0 0.5rem",
                         fontSize: "0.6rem",
                         lineHeight: 1,
                       }}
@@ -281,7 +295,7 @@ export default function App() {
               ))}
             </div>
 
-            {/* Coming Soon */}
+            {/* Coming Soon heading */}
             <h2
               data-testid="coming-soon-heading"
               style={{
@@ -322,7 +336,7 @@ export default function App() {
             </p>
           </div>
 
-          {/* ── Right: email form ── */}
+          {/* ── Right: email signup form ── */}
           <div style={{ paddingTop: "0.15rem" }}>
             <label
               htmlFor="email-input"
