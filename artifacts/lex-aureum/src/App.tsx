@@ -58,7 +58,7 @@ export default function App() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            filter: "blur(5px)",
+            filter: "blur(1.5px)",
           }}
         />
 
