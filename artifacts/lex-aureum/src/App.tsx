@@ -22,10 +22,30 @@ const fadeUp = {
 export default function App() {
   const [email, setEmail] = useState("");
   const [notified, setNotified] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleNotify = () => {
-    if (email.trim()) {
-      setNotified(true);
+  const handleNotify = async () => {
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    setError(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed }),
+      });
+      if (res.ok) {
+        setNotified(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? "Something went wrong. Please try again.");
+      }
+    } catch {
+      setError("Could not connect. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -366,6 +386,7 @@ export default function App() {
                 <button
                   data-testid="button-notify"
                   onClick={handleNotify}
+                  disabled={loading}
                   style={{
                     fontFamily: SANS,
                     fontSize: "0.68rem",
@@ -373,24 +394,36 @@ export default function App() {
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
                     color: "#fff",
-                    background: GOLD,
+                    background: loading ? "#b8973d" : GOLD,
                     border: "none",
                     borderRadius: "0 2px 2px 0",
                     padding: "0.8rem 1.5rem",
-                    cursor: "pointer",
+                    cursor: loading ? "default" : "pointer",
                     flexShrink: 0,
                     transition: "background 0.18s ease",
+                    opacity: loading ? 0.75 : 1,
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = "#b8973d")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = GOLD)
-                  }
+                  onMouseEnter={(e) => {
+                    if (!loading) e.currentTarget.style.background = "#b8973d";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!loading) e.currentTarget.style.background = GOLD;
+                  }}
                 >
-                  Notify me
+                  {loading ? "…" : "Notify me"}
                 </button>
               </div>
+            )}
+            {error && (
+              <p style={{
+                fontFamily: SANS,
+                fontSize: "0.78rem",
+                color: "#b04040",
+                marginTop: "0.5rem",
+                fontWeight: 300,
+              }}>
+                {error}
+              </p>
             )}
           </div>
         </div>
