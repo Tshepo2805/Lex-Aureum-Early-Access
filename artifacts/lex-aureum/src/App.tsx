@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import logoSrc from "@assets/image_1781878266467.png";
-import heroBgSrc from "@assets/2e6e7acb-da4f-4b6b-9041-8f1074aa2b9e_1781878287908.png";
+import heroBgSrc from "@assets/068b1229-4d7a-4ad2-bb05-65ca7d624ff3_1781881405097.png";
 
 const GOLD = "#c9a84c";
 const HERO_BG = "#1a1a18";
@@ -44,23 +44,26 @@ export default function App() {
           flexDirection: "column",
           justifyContent: "space-between",
           overflow: "hidden",
-          /* Dark fallback in case image is slow */
           background: HERO_BG,
-          /* Flatlay photo as background — backgroundPosition: top so the
-             dark desk area shows, and the cream lower section of the
-             screenshot is cut off below the section boundary */
-          backgroundImage: `url(${heroBgSrc})`,
-          backgroundSize: "cover",
-          backgroundPosition: "top center",
-          backgroundRepeat: "no-repeat",
         }}
       >
-        {/*
-          Left-side masking overlay — completely covers the baked-in logo,
-          headline, and subtext from the reference screenshot so only the
-          dark desk / creative props area on the right shows through.
-          Gradient: solid HERO_BG for left ~50%, then fades out rightward.
-        */}
+        {/* Blurred photo layer — sits behind everything, inset by -20px on
+            all sides so the blur feather never shows at the edges */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: -20,
+            backgroundImage: `url(${heroBgSrc})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            filter: "blur(5px)",
+          }}
+        />
+
+        {/* Left-to-right gradient — darkens the left half so headline text
+            reads clearly; right side lets the blurred photo breathe */}
         <div
           aria-hidden="true"
           style={{
@@ -69,16 +72,14 @@ export default function App() {
             pointerEvents: "none",
             background: `linear-gradient(
               to right,
-              ${HERO_BG} 0%,
-              ${HERO_BG} 44%,
-              rgba(26,26,24,0.92) 56%,
-              rgba(26,26,24,0.55) 70%,
-              rgba(26,26,24,0.20) 85%,
-              rgba(26,26,24,0.08) 100%
+              rgba(26,26,24,0.92) 0%,
+              rgba(26,26,24,0.78) 38%,
+              rgba(26,26,24,0.45) 62%,
+              rgba(26,26,24,0.18) 100%
             )`,
           }}
         />
-        {/* Top-edge darkening — softens any logo in top-left of screenshot */}
+        {/* Top-edge darkening */}
         <div
           aria-hidden="true"
           style={{
@@ -87,8 +88,8 @@ export default function App() {
             pointerEvents: "none",
             background: `linear-gradient(
               to bottom,
-              rgba(26,26,24,0.72) 0%,
-              rgba(26,26,24,0.25) 30%,
+              rgba(26,26,24,0.55) 0%,
+              rgba(26,26,24,0.15) 30%,
               transparent 55%
             )`,
           }}
