@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "Cb6gGrjeYpi_lMe1YGCD3"
+uri = "file://artifacts/lex-aureum/public/logo-transparent.png"
+type = "image"
+title = "Lex Aureum Logo (transparent background)"
