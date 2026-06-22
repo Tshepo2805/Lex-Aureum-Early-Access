@@ -15,7 +15,7 @@ const BORDER = "rgba(201,168,76,0.22)";
 const SERIF = "'Cormorant Garamond', Georgia, serif";
 const SANS = "'Inter', system-ui, sans-serif";
 
-const CATEGORIES = ["Music", "Visual Art", "Photography", "Film", "Writing"];
+const CATEGORIES = ["Music", "Visual Art", "Photography", "Film", "Writing", "Software"];
 const SLIDE_DURATION = 5000;
 
 const vin = {
