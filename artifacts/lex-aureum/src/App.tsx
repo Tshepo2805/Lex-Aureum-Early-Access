@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import heroBgSrc from "@assets/068b1229-4d7a-4ad2-bb05-65ca7d624ff3_1781881405097.png";
 
 // ─── TOKENS ──────────────────────────────────────────────────────────────────
@@ -16,6 +16,7 @@ const SERIF = "'Cormorant Garamond', Georgia, serif";
 const SANS = "'Inter', system-ui, sans-serif";
 
 const CATEGORIES = ["Music", "Visual Art", "Photography", "Film", "Writing"];
+const SLIDE_DURATION = 5000;
 
 const vin = {
   initial: { opacity: 0, y: 20 },
@@ -35,22 +36,18 @@ const SP = {
 
 const PenIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <path d="M12 20h9" />
-    <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+    <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
   </svg>
 );
 const LockIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <rect x="3" y="11" width="18" height="11" rx="2" />
-    <path d="M7 11V7a5 5 0 0110 0v4" />
+    <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0110 0v4" />
   </svg>
 );
 const DocIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
     <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-    <polyline points="14 2 14 8 20 8" />
-    <line x1="16" y1="13" x2="8" y2="13" />
-    <line x1="16" y1="17" x2="8" y2="17" />
+    <polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
   </svg>
 );
 const FolderIco = () => (
@@ -60,14 +57,12 @@ const FolderIco = () => (
 );
 const ClockIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
+    <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
   </svg>
 );
 const EyeIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-    <circle cx="12" cy="12" r="3" />
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" />
   </svg>
 );
 const LinkIco = () => (
@@ -85,21 +80,18 @@ const NoteIco = () => (
 const ExportIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-    <polyline points="7 10 12 15 17 10" />
-    <line x1="12" y1="15" x2="12" y2="3" />
+    <polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
   </svg>
 );
 const LayersIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
     <polygon points="12 2 2 7 12 12 22 7 12 2" />
-    <polyline points="2 17 12 22 22 17" />
-    <polyline points="2 12 12 17 22 12" />
+    <polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" />
   </svg>
 );
 const PersonIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
+    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
   </svg>
 );
 const ShieldIco = () => (
@@ -109,17 +101,14 @@ const ShieldIco = () => (
 );
 const PrintIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <path d="M6 9V2h12v7" />
-    <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+    <path d="M6 9V2h12v7" /><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
     <rect x="6" y="14" width="12" height="8" />
   </svg>
 );
 const ScaleIco = () => (
   <svg {...SP} width={22} height={22} viewBox="0 0 24 24">
-    <line x1="12" y1="3" x2="12" y2="21" />
-    <path d="M3 7l9-4 9 4" />
-    <path d="M3 7l6 6a3 3 0 01-6 0z" />
-    <path d="M21 7l-6 6a3 3 0 006 0z" />
+    <line x1="12" y1="3" x2="12" y2="21" /><path d="M3 7l9-4 9 4" />
+    <path d="M3 7l6 6a3 3 0 01-6 0z" /><path d="M21 7l-6 6a3 3 0 006 0z" />
   </svg>
 );
 const CheckIco = () => (
@@ -128,7 +117,7 @@ const CheckIco = () => (
   </svg>
 );
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// ─── DATA ─────────────────────────────────────────────────────────────────────
 const MANIFESTO_CARDS = [
   { icon: <PenIco />, title: "Create with confidence", body: "Focus on your craft knowing your ideas and originals have a private place to live and a record that proves you created first." },
   { icon: <LockIco />, title: "Share with control", body: "Send your work to the right people using secure, trackable links with clean, professional presentation." },
@@ -153,61 +142,42 @@ const FEATURES = [
   { icon: <PersonIco />, title: "Creator Profile", body: "Build your creator profile and professional portfolio, on your terms." },
 ];
 
-const CREATOR_TABS = [
+const CREATOR_SLIDES = [
   {
     label: "Music",
-    desc: "From early ideas to finished masters — protect every part of your process.",
-    items: [
-      { title: "Demos", body: "Lock your ideas the moment they're real." },
-      { title: "Lyrics", body: "Protect words before they're out in the world." },
-      { title: "Beats", body: "Secure your production and sounds." },
-      { title: "Stems", body: "Keep your stems and mixes in your control." },
-      { title: "Cover Art", body: "Protect the visuals that complete your story." },
-    ],
+    image: "/creator-music.png",
+    sentence: "From first voice notes to finished masters, protect every part of the sound before it travels.",
+    items: ["Demos", "Lyrics", "Beats", "Stems", "Cover Art"],
   },
   {
     label: "Visual Art",
-    desc: "From first sketch to final delivery — protect your process at every stage.",
-    items: [
-      { title: "Sketches", body: "Protect early concepts before they're developed." },
-      { title: "Commissions", body: "Keep records of briefs, approvals, and delivery." },
-      { title: "Digital Pieces", body: "Establish creation dates for every file." },
-      { title: "Concepts", body: "Prove what you pitched before it was built." },
-      { title: "References", body: "Track the source material behind your work." },
-    ],
+    image: "/creator-visual-art.png",
+    sentence: "Keep proof of the sketches, studies, commissions, and final pieces that carry your signature.",
+    items: ["Sketches", "Commissions", "Digital Art", "Concepts", "Final Works"],
   },
   {
     label: "Photography",
-    desc: "From proofs to private galleries — keep control of what you share and when.",
-    items: [
-      { title: "Galleries", body: "Control access to full image sets." },
-      { title: "Proofs", body: "Send watermarked proofs with view tracking." },
-      { title: "Client Previews", body: "Know when your work has been viewed." },
-      { title: "RAW Files", body: "Establish timestamps for original captures." },
-      { title: "Licensing", body: "Record who licensed what and when." },
-    ],
+    image: "/creator-photography.png",
+    sentence: "Protect the frames, galleries, proofs, and client previews before they leave your hands.",
+    items: ["RAW Files", "Client Proofs", "Galleries", "Edits", "Usage Notes"],
   },
   {
     label: "Film",
-    desc: "Every script, treatment, pitch, and cut has a version worth protecting.",
-    items: [
-      { title: "Scripts", body: "Timestamp every draft as it evolves." },
-      { title: "Treatments", body: "Protect your pitch before you present it." },
-      { title: "Pitch Decks", body: "Record what you shared and with whom." },
-      { title: "Footage", body: "Establish authorship on original captures." },
-      { title: "Cuts", body: "Track and protect every version of your edit." },
-    ],
+    image: "/creator-film.png",
+    sentence: "From treatments to footage, keep a clean record of the ideas that become moving images.",
+    items: ["Scripts", "Treatments", "Storyboards", "Pitch Decks", "Footage"],
   },
   {
     label: "Writing",
-    desc: "Ideas move fast. Protect your words before the world catches up.",
-    items: [
-      { title: "Manuscripts", body: "Timestamp chapters as they're written." },
-      { title: "Poems", body: "Protect short-form work from early drafts." },
-      { title: "Articles", body: "Record when your ideas were documented." },
-      { title: "Concepts", body: "Protect pitches and treatments before submission." },
-      { title: "Correspondence", body: "Keep records of important communications." },
-    ],
+    image: "/creator-writing.png",
+    sentence: "Protect the words, drafts, characters, articles, and manuscripts before they are read by the world.",
+    items: ["Manuscripts", "Poems", "Articles", "Drafts", "Concepts"],
+  },
+  {
+    label: "Software",
+    image: "/creator-software.png",
+    sentence: "Code is creative work too. Protect the logic, interfaces, systems, and product ideas before they ship.",
+    items: ["Source Code", "UI Concepts", "Product Ideas", "Architecture Notes", "Release Builds"],
   },
 ];
 
@@ -219,9 +189,9 @@ const TRUST_PILLARS = [
 ];
 
 const FAQ_ITEMS = [
-  { q: "What is Lex Aureum?", a: "Lex Aureum is a creative protection platform built for artists, musicians, writers, filmmakers, and photographers. It helps you record, protect, and share your work with intention — creating a private, verifiable trail of your creative process." },
+  { q: "What is Lex Aureum?", a: "Lex Aureum is a creative protection platform built for artists, musicians, writers, filmmakers, photographers, and software creators. It helps you record, protect, and share your work with intention — creating a private, verifiable trail of your creative process." },
   { q: "Is this copyright registration?", a: "No. Lex Aureum is not a copyright registry or a law firm. It helps you build an organized record of your creative process — when work existed, who made it, and when it was shared. This record can support your position, but is not a legal filing." },
-  { q: "Who is it for?", a: "Lex Aureum is built for independent creators — musicians, visual artists, photographers, filmmakers, and writers — especially those who regularly share work before formal agreements are in place." },
+  { q: "Who is it for?", a: "Lex Aureum is built for independent creators — musicians, visual artists, photographers, filmmakers, writers, and software creators — especially those who regularly share work before formal agreements are in place." },
   { q: "Can I share work with clients?", a: "Yes. One of Lex Aureum's core features is controlled sharing — sending preview links with watermarks, tracking when work is viewed, and keeping a clear log of who received what and when." },
   { q: "What happens during beta?", a: "Beta members get early access to the vault, proof records, and shared links. You'll help shape the product through feedback. Selected creators will be contacted individually as spots become available." },
   { q: "Will my files be private?", a: "Yes. Your files, records, and activity are private by default. Nothing is shared unless you choose to share it." },
@@ -262,9 +232,30 @@ export default function App() {
   const [notifyLoading, setNotifyLoading] = useState(false);
   const [notifyError, setNotifyError] = useState<string | null>(null);
 
-  const [activeTab, setActiveTab] = useState(0);
+  // Slider
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progressKey, setProgressKey] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (isPaused) return;
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setActiveSlide(p => (p + 1) % CREATOR_SLIDES.length);
+    }, SLIDE_DURATION);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [activeSlide, isPaused]);
+
+  const goToSlide = (i: number) => {
+    setActiveSlide(i);
+    setProgressKey(k => k + 1);
+  };
+
+  // FAQ
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  // Application form
   const [app, setApp] = useState({ name: "", email: "", creatorType: "", whatToProtect: "", workingWith: "" });
   const [appSent, setAppSent] = useState(false);
   const [appLoading, setAppLoading] = useState(false);
@@ -295,7 +286,7 @@ export default function App() {
     finally { setAppLoading(false); }
   };
 
-  const activeCTab = CREATOR_TABS[activeTab];
+  const activeCreator = CREATOR_SLIDES[activeSlide];
 
   const fieldStyle: React.CSSProperties = {
     display: "block", width: "100%", fontFamily: SANS, fontSize: "0.875rem", fontWeight: 300,
@@ -312,7 +303,7 @@ export default function App() {
 
       {/* ══ 1. HERO ══════════════════════════════════════════════════════════════ */}
       <section className="la-hero" data-testid="hero-section" style={{ position: "relative", minHeight: "65vh", display: "flex", flexDirection: "column", justifyContent: "space-between", overflow: "hidden", background: HERO_BG }}>
-        <div aria-hidden style={{ position: "absolute", inset: -20, backgroundImage: `url(${heroBgSrc})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", filter: "blur(0.8px)" }} />
+        <div aria-hidden style={{ position: "absolute", inset: -20, backgroundImage: `url(${heroBgSrc})`, backgroundSize: "cover", backgroundPosition: "center", filter: "blur(0.8px)" }} />
         <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to right, rgba(26,26,24,0.92) 0%, rgba(26,26,24,0.78) 38%, rgba(26,26,24,0.45) 62%, rgba(26,26,24,0.18) 100%)" }} />
         <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "linear-gradient(to bottom, rgba(26,26,24,0.55) 0%, rgba(26,26,24,0.15) 30%, transparent 55%)" }} />
         <div aria-hidden style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "28%", pointerEvents: "none", background: `linear-gradient(to top, ${HERO_BG} 0%, transparent 100%)` }} />
@@ -353,9 +344,11 @@ export default function App() {
               Created with purpose. Protected with care.
             </p>
           </div>
+
+          {/* Launch notification form */}
           <div style={{ paddingTop: "0.15rem" }}>
             <label htmlFor="email-input" style={{ display: "block", fontFamily: SERIF, fontSize: "1.05rem", fontWeight: 400, color: CHARCOAL, marginBottom: "0.9rem" }}>
-              Join the early-access list
+              Get launch updates
             </label>
             {notified ? (
               <motion.p initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} style={{ fontFamily: SANS, fontSize: "0.85rem", color: CHARCOAL, fontWeight: 300, lineHeight: 1.7, margin: 0, paddingLeft: "0.875rem", borderLeft: `2px solid ${GOLD}` }}>
@@ -369,7 +362,10 @@ export default function App() {
                     {notifyLoading ? "…" : "Notify me"}
                   </button>
                 </div>
-                {notifyError && <p style={{ fontFamily: SANS, fontSize: "0.78rem", color: "#b04040", marginTop: "0.5rem", fontWeight: 300 }}>{notifyError}</p>}
+                <p style={{ fontFamily: SANS, fontSize: "0.75rem", color: MUTED, marginTop: "0.55rem", fontWeight: 300 }}>
+                  Be the first to know when Lex Aureum opens.
+                </p>
+                {notifyError && <p style={{ fontFamily: SANS, fontSize: "0.78rem", color: "#b04040", marginTop: "0.35rem", fontWeight: 300 }}>{notifyError}</p>}
               </>
             )}
           </div>
@@ -448,43 +444,125 @@ export default function App() {
         </div>
       </section>
 
-      {/* ══ 6. BUILT FOR CREATORS ════════════════════════════════════════════════ */}
+      {/* ══ 6. BUILT FOR CREATORS — TIMED SLIDER ═════════════════════════════════ */}
       <section className="la-section" style={{ background: HERO_BG }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div className="la-creators-layout" style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: "4rem", alignItems: "start" }}>
+          <div className="la-creators-layout" style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: "3rem", alignItems: "start" }}>
+
+            {/* Left: label, heading, subcopy, vertical tabs */}
             <motion.div {...vin}>
               <SectionLabel>Built For Creators</SectionLabel>
-              <h2 style={{ fontFamily: SERIF, fontSize: "clamp(1.75rem, 3vw, 2.4rem)", fontWeight: 600, color: IVORY_TEXT, lineHeight: 1.12, margin: 0 }}>
+              <h2 style={{ fontFamily: SERIF, fontSize: "clamp(1.75rem, 3vw, 2.4rem)", fontWeight: 600, color: IVORY_TEXT, lineHeight: 1.12, margin: "0 0 1rem 0" }}>
                 Every discipline has something worth protecting.
               </h2>
-            </motion.div>
-            <div>
-              <div style={{ display: "flex", borderBottom: "1px solid rgba(201,168,76,0.18)" }}>
-                {CREATOR_TABS.map((t, i) => (
-                  <button key={t.label} onClick={() => setActiveTab(i)} style={{ fontFamily: SANS, fontSize: "0.82rem", fontWeight: activeTab === i ? 500 : 300, color: activeTab === i ? GOLD : "rgba(240,236,226,0.4)", background: "none", border: "none", borderBottom: activeTab === i ? `2px solid ${GOLD}` : "2px solid transparent", padding: "0.7rem 1.15rem", cursor: "pointer", transition: "color 0.18s", marginBottom: "-1px", letterSpacing: "0.02em" }}>
+              <p style={{ fontFamily: SANS, fontSize: "0.83rem", color: IVORY_MUTED, fontWeight: 300, lineHeight: 1.75, margin: "0 0 2rem 0" }}>
+                From first drafts to final releases, Lex Aureum is being built for creators who need proof before exposure.
+              </p>
+
+              {/* Vertical tab list */}
+              <div className="la-creator-tabs-vert" style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                {CREATOR_SLIDES.map((t, i) => (
+                  <button
+                    key={t.label}
+                    onClick={() => goToSlide(i)}
+                    aria-pressed={activeSlide === i}
+                    style={{
+                      fontFamily: SANS,
+                      fontSize: "0.83rem",
+                      fontWeight: activeSlide === i ? 500 : 300,
+                      color: activeSlide === i ? GOLD : "rgba(240,236,226,0.42)",
+                      background: activeSlide === i ? "rgba(201,168,76,0.07)" : "none",
+                      border: "none",
+                      borderLeft: activeSlide === i ? `2px solid ${GOLD}` : "2px solid rgba(201,168,76,0.1)",
+                      padding: "0.6rem 1rem",
+                      cursor: "pointer",
+                      textAlign: "left",
+                      transition: "color 0.18s, background 0.18s, border-color 0.18s",
+                      letterSpacing: "0.03em",
+                    }}
+                  >
                     {t.label}
                   </button>
                 ))}
               </div>
-              <motion.div key={activeTab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} style={{ border: "1px solid rgba(201,168,76,0.14)", borderTop: "none", background: "rgba(255,255,255,0.03)", padding: "1.75rem" }}>
-                <div style={{ display: "flex", gap: "1.5rem", marginBottom: "1.5rem", alignItems: "flex-start" }}>
-                  <div style={{ width: 110, height: 80, flexShrink: 0, borderRadius: 2, overflow: "hidden", background: "rgba(201,168,76,0.07)" }}>
-                    {activeTab === 0 && <img src={heroBgSrc} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center", filter: "brightness(0.65)" }} />}
-                  </div>
-                  <div>
-                    <h3 style={{ fontFamily: SERIF, fontSize: "1.3rem", fontWeight: 600, color: GOLD, margin: "0 0 0.3rem 0" }}>{activeCTab.label}</h3>
-                    <p style={{ fontFamily: SANS, fontSize: "0.84rem", color: IVORY_MUTED, fontWeight: 300, lineHeight: 1.75, margin: 0 }}>{activeCTab.desc}</p>
-                  </div>
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1px", background: "rgba(201,168,76,0.1)" }}>
-                  {activeCTab.items.map(item => (
-                    <div key={item.title} style={{ background: HERO_BG, padding: "1rem 0.9rem" }}>
-                      <div style={{ fontFamily: SANS, fontSize: "0.72rem", fontWeight: 500, color: GOLD, marginBottom: "0.3rem", letterSpacing: "0.03em" }}>{item.title}</div>
-                      <div style={{ fontFamily: SANS, fontSize: "0.76rem", color: "rgba(240,236,226,0.4)", fontWeight: 300, lineHeight: 1.55 }}>{item.body}</div>
+            </motion.div>
+
+            {/* Right: slider panel */}
+            <div
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              style={{ position: "relative", border: `1px solid rgba(201,168,76,0.18)`, overflow: "hidden", height: 500 }}
+            >
+              {/* Progress bar track */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "rgba(201,168,76,0.12)", zIndex: 10 }}>
+                <div
+                  key={`${activeSlide}-${progressKey}`}
+                  className="la-progress-fill"
+                  style={{
+                    height: "100%",
+                    background: `linear-gradient(90deg, ${GOLD}, rgba(201,168,76,0.7))`,
+                    transformOrigin: "left",
+                    animationPlayState: isPaused ? "paused" : "running",
+                  }}
+                />
+              </div>
+
+              {/* Slide content */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSlide}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
+                  style={{ position: "absolute", inset: 0 }}
+                >
+                  {/* Background image */}
+                  <div style={{
+                    position: "absolute", inset: 0,
+                    backgroundImage: `url(${activeCreator.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }} />
+                  {/* Cinematic overlay — bottom-heavy so text reads */}
+                  <div style={{
+                    position: "absolute", inset: 0,
+                    background: "linear-gradient(to top, rgba(26,26,24,0.97) 0%, rgba(26,26,24,0.7) 42%, rgba(26,26,24,0.22) 70%, rgba(26,26,24,0.08) 100%)",
+                  }} />
+
+                  {/* Text content — sits above overlay */}
+                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "2rem 2rem 1.75rem" }}>
+                    <h3 style={{ fontFamily: SERIF, fontSize: "clamp(1.5rem, 2.5vw, 2rem)", fontWeight: 600, color: IVORY_TEXT, margin: "0 0 0.5rem 0", lineHeight: 1.1 }}>
+                      {activeCreator.label}
+                    </h3>
+                    <p style={{ fontFamily: SANS, fontSize: "0.87rem", color: "rgba(240,236,226,0.72)", fontWeight: 300, lineHeight: 1.7, margin: "0 0 1.5rem 0", maxWidth: 480 }}>
+                      {activeCreator.sentence}
+                    </p>
+
+                    {/* Use-case pills */}
+                    <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+                      {activeCreator.items.map(item => (
+                        <div key={item} style={{ background: "rgba(255,255,255,0.06)", border: `1px solid rgba(201,168,76,0.22)`, borderRadius: 2, padding: "0.35rem 0.8rem", backdropFilter: "blur(4px)" }}>
+                          <span style={{ fontFamily: SANS, fontSize: "0.73rem", color: GOLD, letterSpacing: "0.05em", fontWeight: 400 }}>{item}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </motion.div>
+
+                    {/* Badge */}
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <div style={{ width: 1, height: 10, background: "rgba(201,168,76,0.5)" }} />
+                      <span style={{ fontFamily: SANS, fontSize: "0.63rem", color: "rgba(201,168,76,0.5)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                        Protected by Lex Aureum
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Slide counter */}
+              <div style={{ position: "absolute", top: "1rem", right: "1rem", zIndex: 10, fontFamily: SANS, fontSize: "0.65rem", color: "rgba(240,236,226,0.3)", letterSpacing: "0.1em" }}>
+                {String(activeSlide + 1).padStart(2, "0")} / {String(CREATOR_SLIDES.length).padStart(2, "0")}
+              </div>
             </div>
           </div>
         </div>
@@ -502,7 +580,6 @@ export default function App() {
               Lex Aureum exists to protect your originality and your future. We keep your work private, record the truth of when it existed, and give you the tools to share with confidence.
             </p>
           </motion.div>
-
           <div className="la-trust-pillars" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1px", background: "rgba(42,37,32,0.09)", marginBottom: "2.75rem" }}>
             {TRUST_PILLARS.map((p, i) => (
               <motion.div key={p.title} {...vin} transition={{ duration: 0.7, delay: i * 0.09 }} style={{ background: IVORY_BG2, padding: "2rem 1.5rem", textAlign: "center" }}>
@@ -516,7 +593,6 @@ export default function App() {
               </motion.div>
             ))}
           </div>
-
           <motion.div {...vin} style={{ textAlign: "center", paddingTop: "1.5rem", borderTop: "1px solid rgba(42,37,32,0.09)" }}>
             <p style={{ fontFamily: SANS, fontSize: "0.79rem", color: MUTED, fontWeight: 300, lineHeight: 1.8, margin: "0 auto", maxWidth: 500 }}>
               Lex Aureum helps creators organize proof of authorship and sharing history.<br />
@@ -528,7 +604,7 @@ export default function App() {
 
       {/* ══ 8. EARLY ACCESS APPLICATION ══════════════════════════════════════════ */}
       <section style={{ background: HERO_BG, position: "relative", overflow: "hidden", padding: "4.5rem 3rem" }} className="la-section-nopad">
-        <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: `url(${heroBgSrc})`, backgroundSize: "cover", backgroundPosition: "center left", backgroundRepeat: "no-repeat", filter: "blur(1px)", opacity: 0.14 }} />
+        <div aria-hidden style={{ position: "absolute", inset: 0, backgroundImage: `url(${heroBgSrc})`, backgroundSize: "cover", backgroundPosition: "center left", filter: "blur(1px)", opacity: 0.14 }} />
         <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(to right, ${HERO_BG} 35%, rgba(26,26,24,0.88) 100%)` }} />
         <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
           <div className="la-earlyaccess-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4.5rem", alignItems: "start" }}>
@@ -538,7 +614,7 @@ export default function App() {
                 Join the founding<br />creator circle.
               </h2>
               <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: IVORY_MUTED, fontWeight: 300, lineHeight: 1.85, margin: "0 0 2rem 0" }}>
-                We are opening the private beta to selected artists, writers, photographers, filmmakers, and creative teams.
+                We are opening the private beta to selected artists, writers, photographers, filmmakers, software creators, and creative teams.
               </p>
               <div style={{ display: "flex", gap: "0.85rem", alignItems: "flex-start" }}>
                 <div style={{ width: 26, height: 26, borderRadius: "50%", border: `1px solid rgba(201,168,76,0.4)`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
@@ -582,12 +658,13 @@ export default function App() {
                       <option>Photographer</option>
                       <option>Filmmaker</option>
                       <option>Writer</option>
+                      <option>Software Creator</option>
                       <option>Other</option>
                     </select>
                   </div>
                   <div style={{ marginBottom: "0.9rem" }}>
                     <label style={labelStyle}>What do you want to protect?</label>
-                    <input type="text" placeholder="e.g. Music, photos, scripts, artwork, concepts, etc." value={app.whatToProtect} onChange={e => setApp(a => ({ ...a, whatToProtect: e.target.value }))} style={fieldStyle} />
+                    <input type="text" placeholder="e.g. Music, photos, scripts, artwork, code, concepts, etc." value={app.whatToProtect} onChange={e => setApp(a => ({ ...a, whatToProtect: e.target.value }))} style={fieldStyle} />
                   </div>
                   <div style={{ marginBottom: "1.5rem" }}>
                     <label style={labelStyle}>Working with clients, collaborators, or public releases?</label>
@@ -662,18 +739,16 @@ export default function App() {
               <div style={{ fontFamily: SERIF, fontSize: "0.6rem", color: "rgba(240,236,226,0.3)", letterSpacing: "0.22em", textTransform: "uppercase" }}>Protected with care.</div>
             </div>
           </div>
-
           <nav style={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
             {["Early Access", "Privacy", "Terms", "Contact"].map((link, i) => (
               <span key={link} style={{ display: "flex", alignItems: "center" }}>
                 {i > 0 && <span style={{ color: "rgba(201,168,76,0.18)", margin: "0 0.6rem" }}>|</span>}
-                <a href="#" style={{ fontFamily: SANS, fontSize: "0.75rem", color: "rgba(240,236,226,0.38)", textDecoration: "none", fontWeight: 300, letterSpacing: "0.03em" }} onMouseEnter={e => e.currentTarget.style.color = GOLD} onMouseLeave={e => e.currentTarget.style.color = "rgba(240,236,226,0.38)"}>
+                <a href="#" style={{ fontFamily: SANS, fontSize: "0.75rem", color: "rgba(240,236,226,0.38)", textDecoration: "none", fontWeight: 300 }} onMouseEnter={e => e.currentTarget.style.color = GOLD} onMouseLeave={e => e.currentTarget.style.color = "rgba(240,236,226,0.38)"}>
                   {link}
                 </a>
               </span>
             ))}
           </nav>
-
           <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.65rem" }}>
             <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
               {[

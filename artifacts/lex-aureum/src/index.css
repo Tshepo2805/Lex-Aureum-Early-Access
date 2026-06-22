@@ -370,6 +370,17 @@
   padding: 4.5rem 3rem;
 }
 
+/* Progress bar animation for the creator slider */
+@keyframes la-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.la-progress-fill {
+  transform-origin: left center;
+  animation: la-progress 5s linear forwards;
+}
+
 @media (max-width: 960px) {
   .la-manifesto-grid {
     grid-template-columns: 1fr !important;

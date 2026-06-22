@@ -1,0 +1,200 @@
+Update the Lex Aureum early access landing page with two specific improvements:
+
+1. Clarify the difference between the hero email form and the beta application.
+2. Redesign the “Built for Creators” section into a more creative timed slider with industry-specific imagery, including Software Creators.
+
+IMPORTANT VISUAL STYLE:
+Preserve the current Lex Aureum luxury legal-tech style:
+- Dark charcoal / black backgrounds
+- Warm ivory sections
+- Antique gold accents
+- Editorial serif headings
+- Clean sans-serif body text
+- Premium archival photography
+- Thin gold lines and borders
+- Cinematic shadows
+- No bright SaaS gradients
+- No cartoon icons
+- No fake stats
+
+EARLY ACCESS FORM FIX:
+
+In the opening hero / coming soon area, the email form should NOT say “Join the early-access list.”
+
+Change it to a lighter launch-notification CTA:
+
+Heading:
+“Get launch updates”
+
+Placeholder:
+“Enter your email”
+
+Button:
+“Notify me”
+
+Small helper text:
+“Be the first to know when Lex Aureum opens.”
+
+This top form is only for general launch updates.
+
+Further down the page, keep the larger beta section as the serious application flow.
+
+Beta section heading:
+“Join the founding creator circle.”
+
+Subcopy:
+“We are opening the private beta to selected artists, writers, photographers, filmmakers, software creators, and creative teams.”
+
+Fields:
+- Name
+- Email
+- Creator type
+- What do you want to protect?
+- Are you working with clients, collaborators, or public releases?
+
+Button:
+“Request Early Access”
+
+Small helper text:
+“Selected creators will be contacted as the private beta opens.”
+
+BUILT FOR CREATORS SECTION REDESIGN:
+
+Replace the current static tab section with a timed creative slider.
+
+Section label:
+“BUILT FOR CREATORS”
+
+Heading:
+“Every discipline has something worth protecting.”
+
+Subcopy:
+“From first drafts to final releases, Lex Aureum is being built for creators who need proof before exposure.”
+
+Slider behavior:
+- Autoplay every 5 seconds.
+- Show one creator type at a time.
+- Include manual navigation tabs.
+- Include a thin gold progress bar that fills as the current slide advances.
+- Pause autoplay when the user hovers over the slider.
+- Allow users to click tabs to switch manually.
+- On mobile, tabs should become a horizontal scroll row.
+- Add smooth fade/slide transitions.
+- Keep it accessible: active tab state, keyboard focus, readable contrast.
+
+Creator tabs:
+- Music
+- Visual Art
+- Photography
+- Film
+- Writing
+- Software
+
+Each slide should have:
+- A large cinematic image related to that creator type.
+- A serif title.
+- One emotional sentence.
+- 5 protection use-cases displayed as refined mini-cards or rows.
+- A small “Protected by Lex Aureum” style badge or caption.
+
+IMAGE DIRECTION:
+Use premium, realistic, editorial images that match the hero’s archival desk mood. They should feel like creative workspaces, not generic stock photos.
+
+Music image:
+Dark studio desk with headphones, notebook, lyric sheets, waveform printouts, vinyl, microphone, and warm gold highlights.
+
+Music copy:
+Title: “Music”
+Sentence: “From first voice notes to finished masters, protect every part of the sound before it travels.”
+Use cases:
+- Demos
+- Lyrics
+- Beats
+- Stems
+- Cover Art
+
+Visual Art image:
+Artist desk with sketches, prints, charcoal pencils, tablet, paint texture, signed concept sheets, and protective archival folders.
+
+Visual Art copy:
+Title: “Visual Art”
+Sentence: “Keep proof of the sketches, studies, commissions, and final pieces that carry your signature.”
+Use cases:
+- Sketches
+- Commissions
+- Digital Art
+- Concepts
+- Final Works
+
+Photography image:
+Dark editing desk with camera, contact sheets, printed proofs, memory cards, lens, gallery selection notes, and gold-toned shadows.
+
+Photography copy:
+Title: “Photography”
+Sentence: “Protect the frames, galleries, proofs, and client previews before they leave your hands.”
+Use cases:
+- RAW Files
+- Client Proofs
+- Galleries
+- Edits
+- Usage Notes
+
+Film image:
+Director’s desk with script pages, storyboard frames, clapperboard, treatment notes, film stills, headphones, and cinematic lighting.
+
+Film copy:
+Title: “Film”
+Sentence: “From treatments to footage, keep a clean record of the ideas that become moving images.”
+Use cases:
+- Scripts
+- Treatments
+- Storyboards
+- Pitch Decks
+- Footage
+
+Writing image:
+Writer’s desk with manuscript pages, fountain pen, marked-up drafts, notebooks, poetry sheets, and warm ivory paper textures.
+
+Writing copy:
+Title: “Writing”
+Sentence: “Protect the words, drafts, characters, articles, and manuscripts before they are read by the world.”
+Use cases:
+- Manuscripts
+- Poems
+- Articles
+- Drafts
+- Concepts
+
+Software image:
+Premium dark developer workspace with laptop showing elegant code, architecture sketches, UI wireframes, Git commit notes, product roadmap cards, and a notebook. Make it feel creative and intellectual, not corporate.
+
+Software copy:
+Title: “Software”
+Sentence: “Code is creative work too. Protect the logic, interfaces, systems, and product ideas before they ship.”
+Use cases:
+- Source Code
+- UI Concepts
+- Product Ideas
+- Architecture Notes
+- Release Builds
+
+LAYOUT:
+Use a split composition:
+- Left side: section label, heading, short subcopy, and vertical or horizontal creator tabs.
+- Right side: large slider panel with image, title, sentence, and use-case cards.
+- The active slide image should be large and emotionally strong.
+- Keep the slide panel elegant with a thin gold border, not a bulky card.
+- Use subtle overlays so text remains readable.
+- Gold should highlight the active tab, progress bar, use-case titles, and small details.
+
+Avoid:
+- Generic tabs that feel flat.
+- Reusing the same image for every creator type.
+- Bright app-dashboard visuals.
+- Cartoon icons.
+- Overcrowded cards.
+- Fake statistics.
+- Calling software creators “developers only”; use “Software” or “Software Creators” because the product protects creative technical work too.
+
+Goal:
+The section should feel like Lex Aureum understands every creative discipline individually, including software creators, while still keeping the full site premium, serious, and protective.

@@ -1,5 +1,40 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "dLwnzpdzCiGY6DE_dopEx"
+uri = "file://artifacts/lex-aureum/public/creator-music.png"
+type = "image"
+title = "dark music studio desk editorial"
+
+[[generated]]
+id = "UL5CPv_WP99vbiRNYVF5M"
+uri = "file://artifacts/lex-aureum/public/creator-visual-art.png"
+type = "image"
+title = "dark artist desk sketches editorial"
+
+[[generated]]
+id = "0mokOxS_GEmGDQVXrz_rE"
+uri = "file://artifacts/lex-aureum/public/creator-photography.png"
+type = "image"
+title = "dark photography desk contact sheets editorial"
+
+[[generated]]
+id = "IMrwUu56zEMM_JsLu-fu0"
+uri = "file://artifacts/lex-aureum/public/creator-film.png"
+type = "image"
+title = "dark film director desk storyboard editorial"
+
+[[generated]]
+id = "3XTKmw23q5cF5WRAmQCZL"
+uri = "file://artifacts/lex-aureum/public/creator-writing.png"
+type = "image"
+title = "dark writer desk manuscripts fountain pen editorial"
+
+[[generated]]
+id = "fahCTw7-6sce0NLoAvGpe"
+uri = "file://artifacts/lex-aureum/public/creator-software.png"
+type = "image"
+title = "dark creative developer workspace editorial"
 
 [[outputs]]
 id = "Cb6gGrjeYpi_lMe1YGCD3"
