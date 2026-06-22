@@ -1,0 +1,114 @@
+We are expanding the Lex Aureum early access landing page. Keep the current visual identity from the screenshot exactly: luxury legal-tech, black/ivory/gold palette, editorial serif typography, dark archival desk imagery, premium spacing, serious protective tone, and soft cinematic shadows.
+
+Do not redesign the hero. Preserve the current feeling:
+“Your work deserves more than exposure. It deserves protection.”
+
+Now expand the page into a richer early-access product experience.
+
+Page structure:
+
+1. Hero
+Keep the existing hero with the Lex Aureum logo, archival creative desk image, large serif headline, short subcopy, creator categories, “Coming Soon”, and early-access email form.
+
+2. Manifesto Section
+Ivory background with elegant serif heading:
+“Exposure is not ownership.”
+Copy:
+“Artists are asked to share before they are protected. Songs get previewed. Concepts get pitched. Photographs get sent. Scripts get circulated. Lex Aureum is being built so creators can record, protect, and share their work with intention.”
+
+Add three short statement cards:
+- Create with confidence
+- Share with control
+- Keep proof close
+
+3. How It Works Section
+Dark background, gold section label, four numbered steps:
+01. Upload your work
+Store songs, images, scripts, videos, concepts, drafts, or project files in a private creative vault.
+02. Create a proof record
+Generate a timestamped record showing what existed, when it existed, and who submitted it.
+03. Share safely
+Send controlled preview links to clients, collaborators, labels, agencies, or buyers.
+04. Export your evidence
+When needed, prepare a clean proof pack containing records, files, dates, notes, and activity history.
+
+4. Beta Features Section
+Ivory background, premium cards, thin gold borders.
+Feature cards:
+- Creative Work Vault
+- Timestamped Proof Records
+- Watermarked Previews
+- Private Client Links
+- Agreement & License Notes
+- Evidence Pack Export
+- Version History
+- Creator Profile
+
+Each card should have a short description, not too much text.
+
+5. Built For Creators Section
+Dark editorial section with tabs or cards:
+Music, Visual Art, Photography, Film, Writing.
+Each creator type should explain the use case:
+Music: protect demos, lyrics, beats, stems, cover art.
+Visual Art: protect sketches, commissions, digital pieces, concepts.
+Photography: protect galleries, proofs, client previews.
+Film: protect scripts, treatments, pitch decks, footage.
+Writing: protect manuscripts, poems, articles, concepts.
+
+6. Trust Section
+Ivory section with serious, calm copy:
+“Your work remains yours.”
+Add trust principles:
+- Private by default
+- Built for proof, not noise
+- Designed for creators before disputes happen
+- Legal support without pretending to replace a lawyer
+
+Include a small disclaimer:
+“Lex Aureum helps creators organize proof of authorship and sharing history. It is not a law firm and does not replace legal advice.”
+
+7. Early Access Application Section
+Make this feel more selective than a normal newsletter.
+Heading:
+“Join the founding creator circle.”
+Fields:
+- Name
+- Email
+- Creator type dropdown
+- What do you want to protect?
+- Are you working with clients, collaborators, or public releases?
+Button:
+“Request Early Access”
+
+After submission, show:
+“Your request has been received. We’ll contact selected creators as the private beta opens.”
+
+8. FAQ Section
+Questions:
+- What is Lex Aureum?
+- Is this copyright registration?
+- Who is it for?
+- Can I share work with clients?
+- What happens during beta?
+- Will my files be private?
+
+9. Footer
+Dark footer with Lex Aureum logo, short tagline:
+“Created with purpose. Protected with care.”
+Links:
+Early Access, Privacy, Terms, Contact.
+
+Design rules:
+Use serif headings like Playfair Display, Cormorant Garamond, or similar.
+Use clean sans-serif body text like Inter, Manrope, or similar.
+Colors:
+- Deep black / charcoal
+- Warm ivory
+- Antique gold
+- Muted grey text
+Cards should feel editorial and premium, not SaaS bubbly.
+Avoid bright gradients, cartoon icons, purple/blue tech styling, fake statistics, and generic startup language.
+Use subtle scroll fades, gold hover states, soft shadows, thin dividers, and generous spacing.
+
+The final page should feel like a luxury archive, a legal-tech product, and a creative protection movement all in one.

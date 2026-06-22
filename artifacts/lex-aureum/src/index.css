@@ -364,3 +364,67 @@
     padding: 2.25rem 1.5rem 2.5rem !important;
   }
 }
+
+/* ─── Expanded page sections ─────────────────────── */
+.la-section {
+  padding: 4.5rem 3rem;
+}
+
+@media (max-width: 960px) {
+  .la-manifesto-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .la-manifesto-grid p {
+    margin-top: 0 !important;
+  }
+  .la-steps-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .la-features-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .la-creators-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .la-trust-pillars {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .la-faq-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .la-faq-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .la-earlyaccess-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .la-section {
+    padding: 3rem 1.5rem !important;
+  }
+  .la-section-nopad {
+    padding: 3rem 1.5rem !important;
+  }
+  .la-manifesto-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .la-steps-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .la-features-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .la-trust-pillars {
+    grid-template-columns: 1fr !important;
+  }
+  .la-footer-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
