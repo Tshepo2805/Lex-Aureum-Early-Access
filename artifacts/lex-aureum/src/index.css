@@ -378,7 +378,7 @@
 
 .la-progress-fill {
   transform-origin: left center;
-  animation: la-progress 5s linear forwards;
+  animation: la-progress 10s linear forwards;
 }
 
 @media (max-width: 960px) {

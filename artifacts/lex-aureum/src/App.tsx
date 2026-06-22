@@ -16,7 +16,7 @@ const SERIF = "'Cormorant Garamond', Georgia, serif";
 const SANS = "'Inter', system-ui, sans-serif";
 
 const CATEGORIES = ["Music", "Visual Art", "Photography", "Film", "Writing", "Software"];
-const SLIDE_DURATION = 5000;
+const SLIDE_DURATION = 10000;
 
 const vin = {
   initial: { opacity: 0, y: 20 },
@@ -559,9 +559,39 @@ export default function App() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Slide counter */}
-              <div style={{ position: "absolute", top: "1rem", right: "1rem", zIndex: 10, fontFamily: SANS, fontSize: "0.65rem", color: "rgba(240,236,226,0.3)", letterSpacing: "0.1em" }}>
-                {String(activeSlide + 1).padStart(2, "0")} / {String(CREATOR_SLIDES.length).padStart(2, "0")}
+              {/* Slide counter + pause/play control */}
+              <div style={{ position: "absolute", top: "0.9rem", right: "0.9rem", zIndex: 10, display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                <span style={{ fontFamily: SANS, fontSize: "0.65rem", color: "rgba(240,236,226,0.3)", letterSpacing: "0.1em" }}>
+                  {String(activeSlide + 1).padStart(2, "0")} / {String(CREATOR_SLIDES.length).padStart(2, "0")}
+                </span>
+                <button
+                  onClick={() => setIsPaused(p => !p)}
+                  aria-label={isPaused ? "Resume slideshow" : "Pause slideshow"}
+                  style={{
+                    width: 28, height: 28,
+                    borderRadius: "50%",
+                    border: "1px solid rgba(201,168,76,0.3)",
+                    background: "rgba(26,26,24,0.55)",
+                    backdropFilter: "blur(4px)",
+                    cursor: "pointer",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    padding: 0,
+                    flexShrink: 0,
+                  }}
+                >
+                  {isPaused ? (
+                    /* Play triangle */
+                    <svg width={10} height={10} viewBox="0 0 10 10" fill={GOLD}>
+                      <polygon points="2,1 9,5 2,9" />
+                    </svg>
+                  ) : (
+                    /* Pause bars */
+                    <svg width={10} height={10} viewBox="0 0 10 10" fill={GOLD}>
+                      <rect x="1.5" y="1" width="2.5" height="8" rx="0.5" />
+                      <rect x="6"   y="1" width="2.5" height="8" rx="0.5" />
+                    </svg>
+                  )}
+                </button>
               </div>
             </div>
           </div>
